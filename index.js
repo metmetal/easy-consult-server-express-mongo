@@ -10,13 +10,17 @@ app.use(cors());
 require('dotenv').config(); 
 
 
-const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.cvfa5.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
+// const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.cvfa5.mongodb.net/$easyConsulting?retryWrites=true&w=majority`;
+const uri = "mongodb+srv://organicUser:RJOc223KT616G33M@cluster0.htf6k.mongodb.net/easyConsulting?retryWrites=true&w=majority";
+
+
+
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
-  const serviceCollection = client.db(`${process.env.DB_NAME}`).collection("services");
-  const reviewCollection = client.db(`${process.env.DB_NAME}`).collection("review");
-  const orderCollection = client.db(`${process.env.DB_NAME}`).collection("orders");
-  const adminCollection = client.db(`${process.env.DB_NAME}`).collection("admin");
+  const serviceCollection = client.db("easyConsulting").collection("services");
+  const reviewCollection = client.db("easyConsulting").collection("review");
+  const orderCollection = client.db("easyConsulting").collection("orders");
+  const adminCollection = client.db("easyConsulting").collection("admin");
 
   const handlePost = (route, collection) => {
     app.post(route, (req, res) => {
